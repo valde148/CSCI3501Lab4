@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class binpacking {
 
@@ -81,16 +82,19 @@ public class binpacking {
     }
 
     public static void main(String[] args) {
-        // 12, 4, 8, 15, 9, 3, 1, 10
-        List<Integer> bin = new ArrayList<>();
-        bin.add(12);
-        bin.add(4);
-        bin.add(8);
-        bin.add(15);
-        bin.add(9);
-        bin.add(3);
-        bin.add(1);
-        bin.add(10);
-        packing(bin, 8, 20);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number of items: ");
+        int n = sc.nextInt();
+        sc.nextLine(); // Consume the newline character
+        List<Integer> items = new ArrayList<>();
+        System.out.println("Enter the items separated by spaces: ");
+        String[] inputItems = sc.nextLine().split(" ");
+        for (String item : inputItems) {
+            items.add(Integer.parseInt(item));
+        }
+        System.out.println("Enter the bin capacity: ");
+        int cap = sc.nextInt();
+        packing(items, n, cap);
+        sc.close();
     }
 }
