@@ -10,57 +10,37 @@ public class binpacking {
         List<Integer> bin2 = new ArrayList<>();
         List<Integer> bin3 = new ArrayList<>();
 
-        int bin1Cap = 0;
-        int bin2Cap = 0;
-        int bin3Cap = 0;
+        List<Integer> curBin = bin1;
+        int curBinCap = 0;
 
         Collections.sort(items);
 
-        while (bin1Cap < cap && !items.isEmpty()) {
-            if (bin1Cap <= 0 && n - 1 < items.size()) {
-                bin1.add(items.get(n - 1));
-                bin1Cap += items.get(n - 1);
-                items.remove(n - 1);
-            } else if (bin1Cap < cap) {
-                int largest = largestFit(items, bin1Cap, cap);
-                if (largest == 0) {
-                    break;
+        for (int i = 0; i < 3; i++) {
+            while (curBinCap < cap && !items.isEmpty()) {
+                if (curBinCap <= 0 && n - 1 < items.size()) {
+                    curBin.add(items.get(n - 1));
+                    curBinCap += items.get(n - 1);
+                    items.remove(n - 1);
+                } else if (curBinCap < cap) {
+                    int largest = largestFit(items, curBinCap, cap);
+                    if (largest == 0) {
+                        break;
+                    }
+                    curBin.add(largest);
+                    curBinCap += largest;
+                    items.remove(Integer.valueOf(largest));
                 }
-                bin1.add(largest);
-                bin1Cap += largest;
-                items.remove(Integer.valueOf(largest));
             }
-        }
-
-        while (bin2Cap < cap && !items.isEmpty()) {
-            if (bin2Cap <= 0 && n - 1 < items.size()) {
-                bin2.add(items.get(n - 1));
-                bin2Cap += items.get(n - 1);
-                items.remove(n - 1);
-            } else if (bin2Cap < cap) {
-                int largest = largestFit(items, bin2Cap, cap);
-                if (largest == 0) {
-                    break;
-                }
-                bin2.add(largest);
-                bin2Cap += largest;
-                items.remove(Integer.valueOf(largest));
-            }
-        }
-
-        while (bin3Cap < cap && !items.isEmpty()) {
-            if (bin3Cap <= 0 && n - 1 < items.size()) {
-                bin3.add(items.get(n - 1));
-                bin3Cap += items.get(n - 1);
-                items.remove(n - 1);
-            } else if (bin3Cap < cap) {
-                int largest = largestFit(items, bin3Cap, cap);
-                if (largest == 0) {
-                    break;
-                }
-                bin3.add(largest);
-                bin3Cap += largest;
-                items.remove(Integer.valueOf(largest));
+            if (i == 0) {
+                bin1 = curBin;
+                curBin = bin2;
+                curBinCap = 0;
+            } else if (i == 1) {
+                bin2 = curBin;
+                curBin = bin3;
+                curBinCap = 0;
+            } else {
+                bin3 = curBin;
             }
         }
 
