@@ -6,32 +6,32 @@ import java.util.Scanner;
 public class binpacking {
 
     public static void packing(List<Integer> items, int n, int cap) {
-        List<Integer> bin1 = new ArrayList<>();
+        List<Integer> bin1 = new ArrayList<>(); // Create 3 bins
         List<Integer> bin2 = new ArrayList<>();
         List<Integer> bin3 = new ArrayList<>();
 
-        List<Integer> curBin = bin1;
-        int curBinCap = 0;
+        List<Integer> curBin = bin1; // Current bin starting at bin 1
+        int curBinCap = 0; // Current bin capacity
 
-        Collections.sort(items);
+        Collections.sort(items); // Sort the items in ascending order
 
-        for (int i = 0; i < 3; i++) {
-            while (curBinCap < cap && !items.isEmpty()) {
-                if (curBinCap <= 0 && n - 1 < items.size()) {
-                    curBin.add(items.get(n - 1));
-                    curBinCap += items.get(n - 1);
-                    items.remove(n - 1);
+        for (int i = 0; i < 3; i++) { // Loop through the 3 bins
+            while (curBinCap < cap && !items.isEmpty()) { 
+                if (curBinCap <= 0 && n - 1 < items.size()) { // If the current bin is empty and the next item fits
+                    curBin.add(items.get(n - 1)); // Add the item to the bin
+                    curBinCap += items.get(n - 1); // Update the current bin capacity
+                    items.remove(n - 1); // Remove the item from the list
                 } else if (curBinCap < cap) {
-                    int largest = largestFit(items, curBinCap, cap);
-                    if (largest == 0) {
+                    int largest = largestFit(items, curBinCap, cap); // Find the largest item that fits
+                    if (largest == 0) { // If no items fit break loop go to next bin
                         break;
                     }
-                    curBin.add(largest);
-                    curBinCap += largest;
-                    items.remove(Integer.valueOf(largest));
+                    curBin.add(largest); // Add the item to the bin
+                    curBinCap += largest; // Update the current bin capacity
+                    items.remove(Integer.valueOf(largest)); // Remove the item from the list
                 }
             }
-            if (i == 0) {
+            if (i == 0) { // Update the current bin and reset the current bin capacity
                 bin1 = curBin;
                 curBin = bin2;
                 curBinCap = 0;
@@ -51,10 +51,10 @@ public class binpacking {
     }
 
     public static int largestFit(List<Integer> items, int curcap, int cap) {
-        int largest = 0;
-        for (int i = items.size() - 1; i >= 0; i--) {
+        int largest = 0; 
+        for (int i = items.size() - 1; i >= 0; i--) { // Loop through the items in descending order
             if (items.get(i) + curcap <= cap) {
-                largest = items.get(i);
+                largest = items.get(i); // Find the largest item that fits
                 break;
             }
         }
