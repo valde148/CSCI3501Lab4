@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,10 +16,10 @@ public class binpacking {
         Collections.sort(items);
 
         while (bin1Cap < cap && !items.isEmpty()) {
-            if (bin1Cap <= 0) {
-                bin1.add(items.get(0));
-                bin1Cap += items.get(0);
-                items.remove(0);
+            if (bin1Cap <= 0 && n - 1 < items.size()) {
+                bin1.add(items.get(n - 1));
+                bin1Cap += items.get(n - 1);
+                items.remove(n - 1);
             } else if (bin1Cap < cap) {
                 int largest = largestFit(items, bin1Cap, cap);
                 if (largest == 0) {
@@ -33,10 +32,10 @@ public class binpacking {
         }
 
         while (bin2Cap < cap && !items.isEmpty()) {
-            if (bin2Cap <= 0) {
-                bin2.add(items.get(0));
-                bin2Cap += items.get(0);
-                items.remove(0);
+            if (bin2Cap <= 0 && n - 1 < items.size()) {
+                bin2.add(items.get(n - 1));
+                bin2Cap += items.get(n - 1);
+                items.remove(n - 1);
             } else if (bin2Cap < cap) {
                 int largest = largestFit(items, bin2Cap, cap);
                 if (largest == 0) {
@@ -49,10 +48,10 @@ public class binpacking {
         }
 
         while (bin3Cap < cap && !items.isEmpty()) {
-            if (bin3Cap <= 0) {
-                bin3.add(items.get(0));
-                bin3Cap += items.get(0);
-                items.remove(0);
+            if (bin3Cap <= 0 && n - 1 < items.size()) {
+                bin3.add(items.get(n - 1));
+                bin3Cap += items.get(n - 1);
+                items.remove(n - 1);
             } else if (bin3Cap < cap) {
                 int largest = largestFit(items, bin3Cap, cap);
                 if (largest == 0) {
@@ -82,9 +81,8 @@ public class binpacking {
     }
 
     public static void main(String[] args) {
+        // 12, 4, 8, 15, 9, 3, 1, 10
         List<Integer> bin = new ArrayList<>();
-        bin.add(20);
-        bin.add(8);
         bin.add(12);
         bin.add(4);
         bin.add(8);
