@@ -1,4 +1,5 @@
 //Armando Valdez & Jaden Rainey
+//The conclusion is at the bottom of the code 
 import java.util.Scanner;
 
 public class BinPacking {
@@ -112,5 +113,35 @@ public class BinPacking {
         packing(items, n, b);
     }
 }
-
-//when writing this program it came with alot of 
+//Conclusion
+//in order for me to run this program I had to use java script terminal in order for it to work
+//I used the command java binpacking.java in order for it to run, then it will ask you to Enter 
+// bin capacity(B) and after that the number of items(N) then lastely to enter the items in.
+//after that it will run and will attempt to pack the items into bins that i have named bin1,
+//bin2, and bin3 but also print out the left over.
+//the documentation and explanation of the algorithm. this algorithm will use first fit decreasing
+// in order to pack the items in bins and such. It will first set up the items in decreasing order. 
+// By sorting the items it helps place the largest items into the bins first. Once that is complete
+//the algorithm will try to place the items into bin1 that has enouh remaining space. Whatever can't
+//fit then it is placed in leftovers. It does come up with a close enough solution. Meaning that
+//it doesn't guarantee an optimal solution. This algorithm focuses on filling the bins but could
+// leave small amounts of unsued space. It takes more effect with smaller items or when the item
+//distribution is uneven. 
+//This is an example of optimal soultion, when running the terminal we get Enter B: 20 next we
+//get enter N: 8, after that we get Enter the items: 12 4 8 15 9 3 1 10. We get a Bin1: [15, 4 ,1]
+//Bin2:[12, 8] Bin3:[10, 9] Leftover items: [3]
+//Then for the non opitmal example, I used the example Enter B: 10, Enter N: 5 Enter the items:
+//9 7 3 2 1 8, we get Bin1:[9, 1] Bin2: [7, 3] Bin3: [2] and No leftover items. In this case
+// the algorithm fails to pack the items efficiently since it prioritizes filling the bins with
+// large items first.
+//Compute the efficiency of your algorithm in terms of Big-O, the efficiency of the algorithm
+//can be understood in terms of how much time it takes to process the input as the number of
+//items increases. First, the algorithm sorts the items from largest to smallest, using a sorting
+//method called bubble sort. This sorting process is not the fastest, and it takes longer as the
+//number of items increases, specifically, the time it takes grows roughly with the square of the
+//number of items. After sorting, the it tries to place each item into the first bin that has 
+//enough space. However, in the worst case, the algorithm may check bin for each item, which 
+//also takes time that grows with the square of the number of items. The overall time the 
+// algorithm takes depends heavily on the number of items, and in the worst case, the time grows
+//as the number of items increases. we used a faster sorting method, the algorithm would run more 
+//efficiently, but as it stands, the algorithm is slower when dealing with large inputs.
