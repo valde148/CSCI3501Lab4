@@ -2,7 +2,7 @@
 //The conclusion is at the bottom of the code 
 import java.util.Scanner;
 
-public class BinPacking {
+public class binpacking {
 
     // this method packs items into bins by using first fit decreasing
     // it also handles left overs
